@@ -163,7 +163,9 @@ class Manager
 
         foreach ($paths as $path) {
             if (is_file($path)) {
-                $files[] = $path;
+                if (!in_array($path, $excluded)) {
+                    $files[] = $path;
+                }
             } else if (is_dir($path)) {
                 $iterator = new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS);
                 if (!empty($excluded)) {
